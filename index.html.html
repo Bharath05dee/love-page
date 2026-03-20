@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Deepika gowda 💖</title>
+
+<style>
+body {
+  margin: 0;
+  font-family: 'Comic Sans MS', cursive;
+  background: linear-gradient(to right, #f8a5c2, #fbc2eb);
+  text-align: center;
+  overflow: hidden;
+}
+
+.container {
+  margin-top: 80px;
+  position: relative;
+  z-index: 2;
+}
+
+h1 {
+  color: #ff3e6c;
+  font-size: 40px;
+}
+
+/* Cute image */
+.cute-img {
+  width: 150px;
+  margin: 20px 0;
+}
+
+/* Buttons */
+.buttons {
+  margin-top: 20px;
+}
+
+button {
+  padding: 12px 25px;
+  font-size: 18px;
+  border: none;
+  border-radius: 15px;
+  margin: 10px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+#yesBtn {
+  background-color: #4CAF50;
+  color: white;
+  transform: scale(1);
+}
+
+#noBtn {
+  background-color: #e74c3c;
+  color: white;
+  position: absolute;
+}
+
+.hidden {
+  display: none;
+}
+
+#celebration h2 {
+  color: #ff0066;
+}
+
+/* Heart animation */
+@keyframes float {
+  0% { transform: translateY(0); opacity: 1; }
+  100% { transform: translateY(-120vh); opacity: 0; }
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+  <h1 id="question">Will you Marry Me Bsdk? 💖</h1>
+
+  <!-- Cute image (same vibe as screenshot) -->
+  <img class="cute-img" src="https://media.tenor.com/8Qn9n3RZ6EAAAAAC/cute-cat.gif">
+
+  <div class="buttons">
+    <button id="yesBtn">Yes 💕</button>
+    <button id="noBtn">No 😢</button>
+  </div>
+
+  <div id="celebration" class="hidden">
+    <h2>YAYYYYYYYYYY!!! 💘🎉</h2>
+    <p>I knew you would say YES BSDK ❤️</p>
+  </div>
+</div>
+
+<script>
+const noBtn = document.getElementById("noBtn");
+const yesBtn = document.getElementById("yesBtn");
+const celebration = document.getElementById("celebration");
+const question = document.getElementById("question");
+
+let noTexts = [
+ "No 😢",
+  "chinnuuuuuuuu?🫠",
+  "Are you sure? 🥺",
+  "Really sure? 😭",
+  "Think again 💔",
+  "Durga istee naa😧",
+  "Last chance 😖",
+  "YAMMEEEEE 🐄",
+  "I will buy you dog loo🐶🐾",
+  "Don't do this 😩",
+  "I'll cry 😭",
+  "Okay fine... try again 😏"
+];
+
+let index = 0;
+let yesScale = 1;
+
+// Move NO button + grow YES button
+noBtn.addEventListener("mouseover", () => {
+
+  const btnWidth = noBtn.offsetWidth;
+  const btnHeight = noBtn.offsetHeight;
+
+  const maxX = window.innerWidth - btnWidth - 20;
+  const maxY = window.innerHeight - btnHeight - 20;
+
+  const x = Math.random() * maxX;
+  const y = Math.random() * maxY;
+
+  noBtn.style.left = x + "px";
+  noBtn.style.top = y + "px";
+
+  // change text
+  if (index < noTexts.length) {
+    noBtn.innerText = noTexts[index];
+    index++;
+  }
+
+  // 🔥 grow YES button
+  yesScale += 0.1;
+  yesBtn.style.transform = `scale(${yesScale})`;
+});
+
+// YES click
+yesBtn.addEventListener("click", () => {
+  document.querySelector(".buttons").style.display = "none";
+  question.innerText = "I knew it YAMMEEE! 😍";
+  celebration.classList.remove("hidden");
+
+  createHearts();
+});
+
+// Hearts animation
+function createHearts() {
+  const heartTypes = ["❤️", "🫶🏻", "💋", "💕"];
+
+  setInterval(() => {
+    for (let i = 0; i < 10; i++) {
+      const heart = document.createElement("div");
+
+      heart.innerHTML = heartTypes[Math.floor(Math.random() * heartTypes.length)];
+
+      heart.style.position = "fixed";
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.top = "100vh";
+
+      const size = Math.random() * 20 + 20;
+      heart.style.fontSize = size + "px";
+
+      const duration = Math.random() * 2 + 3;
+      heart.style.animation = `float ${duration}s linear`;
+
+      document.body.appendChild(heart);
+
+      setTimeout(() => heart.remove(), duration * 1000);
+    }
+  }, 200);
+}
+</script>
+
+</body>
+</html>
